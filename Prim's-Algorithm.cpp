@@ -48,7 +48,7 @@ int prim(int v,int **arr,int start)
     
     for(i=1;i<=v;i++)
         sum=sum+weight[i];
-        for(i=1;i<=n;i++)
+        for(i=1;i<=v;i++)
         {
         if(parent[i]<i)
         cout<<parent[i]<<" "<<i<<" "<<weight[i]<<endl;
