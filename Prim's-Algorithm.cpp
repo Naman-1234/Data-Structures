@@ -45,10 +45,7 @@ int prim(int v,int **arr,int start)
         }
 
     }
-    for(i=1;i<=v;i++)
-        {cout<<visited[i]<<"   "<<weight[i];
-    cout<<endl;
-        }
+    
     for(i=1;i<=v;i++)
         sum=sum+weight[i];
         for(i=1;i<=n;i++)
