@@ -51,6 +51,12 @@ int prim(int v,int **arr,int start)
         }
     for(i=1;i<=v;i++)
         sum=sum+weight[i];
+        for(i=1;i<=n;i++)
+        {
+        if(parent[i]<i)
+        cout<<parent[i]<<" "<<i<<" "<<weight[i]<<endl;
+        else 
+        cout<<i<<" "<<parent[i]<<" "<<weight[i]<<endl;}
     return sum;
 
 }
