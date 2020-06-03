@@ -1,3 +1,9 @@
+/*There are two codes in this first one written by me uses queue and I wanted to see some features that how they work so I have implemented
+it little bit difficult but the concept is that U create a linked list of queue in which there is address of nodes of tree and Further since I
+want to use it little bit more difficult so I instead of taking head globally I have taken a another structure through which I can distinguish
+of which head I am talking about right now.
+*/
+/*Much Simpler Version At last*/
 #include<bits/stdc++.h>
 using namespace std;
 struct node
@@ -101,3 +107,89 @@ int main()
    create(q,p);
 display(p);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*Simpler  Version*/
+/*But it in c*/
+
+
+
+#include<stdio.h>
+#include<conio.h>
+typedef struct node
+{
+  int data;
+  struct node *left;
+  struct node *right;
+} node;
+
+node *create()
+{
+    node *p;
+    int x;
+    printf("Enter data(-1 for no node):");
+    scanf("%d",&x);
+
+    if(x==-1)
+	return NULL;
+
+    p=(node*)malloc(sizeof(node));
+    p->data=x;
+    printf("Enter left child of %d:\n",x);
+    p->left=create();
+    printf("Enter right child of %d:\n",x);
+    p->right=create();
+    return p;
+}
+
+void preorder(node *t)
+{
+  if(t!=NULL)
+  {
+    printf("  %d",t->data);
+    preorder(t->left);
+    preorder(t->right);
+  }
+}
+void inorder(node *t)
+{
+  if(t!=NULL)
+  {
+    inorder(t->left);
+    printf("  %d",t->data);
+    inorder(t->right);
+  }
+}
+void postorder(node *t)
+{
+  if(t!=NULL)
+  {
+    postorder(t->left);
+    postorder(t->right);
+    printf("  %d",t->data);
+  }
+}
+void main()
+{
+  node *root;
+  clrscr();
+  root=create();
+  printf("\nThe preorder traversal of tree is: ");
+  preorder(root);
+  printf("\nThe inorder traversal of tree is: ");
+  inorder(root);
+  printf("\nThe postorder traversal of tree is: ");
+  postorder(root);
+  getch();
+}
+
