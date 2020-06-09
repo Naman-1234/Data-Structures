@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct avl
+{
+    struct avl *left;
+    int data;
+    struct avl *right;
+    int height;
+    int balance;
+}*root=NULL;
+int height(struct avl *p)
+{
+    if(!p)
+        return 0;
+if(p->left&&p->right)
+    return p->left->height>p->right->height?p->left->height+1:p->right->height+1;
+if(p->left)
+    return p->left->height+1;
+if(p->right)
+    return p->right->height+1;
+return 0;
+}
+int balance_factor(struct avl *p)
+{
+     if(!p)
+        return 0;
+if(p->left&&p->right)
+    return p->left->height-p->right->height;
+if(p->left)
+    return p->left->height;
+if(p->right)
+    return 0-p->right->height;
+return 0;
+}
+struct avl *create_node(int key)
+{
+    struct avl *p=(struct avl *)malloc(sizeof(struct avl));
+p->left=p->right=NULL;
+p->data=key;
+return p;
+}
+struct avl *ll_rotation(struct avl *p)
+{
+    struct avl *temp=p->left,*temp1;
+    temp1=temp->right;
+    temp->right=p;
+    p->left=temp1;
+    return temp;
+
+}
+struct avl *lr_rotation(struct avl *p)
+{
+    struct avl *temp1=p->left->right,*temp2,*temp3,*temp4=p->left;
+    temp2=temp1->left;
+    temp3=temp1->right;
+    temp1->left=temp4;
+    temp1->right=p;
+    temp1->left->right=temp2;
+    temp1->right->left=temp3;
+
+}
+struct avl *insert(struct avl *p,int key)
+{
+    if(p==NULL)
+        return create_node(key);
+        if(p->data==key)
+        return NULL;
+        if(p->data<key)
+        p->right=insert(p->right,key);
+        else if(p->data<key)
+        p->left=insert(p->left,key);
+        p->height=height(p);
+        p->balance=balance_factor(p);
+        if(p->balance==2&&p->left->balance==1)
+        return ll_rotation(p);
+        else if(p->balance==2&&p->left->balance==-1)
+        return lr_rotation(p);
+        else if(p->balance==-2&&p->right->balance==-1)
+        return rrrotation(p);
+        else if(p->balance==-2&&p->right->balance==1)
+        return rl_rotation(p);
+        return p;
+
+}
+int main()
+{
+   root=insert(root,30);
+   insert(root,20);
+   insert(root,10);
+   printf("%d",root->data);
+}
