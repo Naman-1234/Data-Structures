@@ -1,3 +1,14 @@
+/*Basically u have to call for heapigy method for each non leaf node 
+Characterstic of a leaf node is taken by complete binary tree which is that leaf nodes are from floor(n/2)+1 to n
+so everytime u call for heapify u take the index called to be largest then we try to check if either of its left and right element 
+is greater than it, and in case that they are then update the value of largest to that index
+Then we check if largest has been updated that simply mean that the value have been swapped then we call heapify for that updatedn index 
+to ensure that it is largest  than all the elements below.
+
+
+
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
